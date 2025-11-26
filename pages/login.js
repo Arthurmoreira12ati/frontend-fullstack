@@ -1,7 +1,7 @@
 const button = document.querySelector("button")
 button.addEventListener("click", login)
 
-async function sendUser(event) {
+async function login(event) {
     event.preventDefault()
     const email = document.querySelector("#email").value
     const password = document.querySelector("#password").value
@@ -24,7 +24,17 @@ async function sendUser(event) {
         body: JSON.stringify({ user })
     }).then(response => response.json())
 
-    alert(response.message)
+    if(response.message) {
+        alert(response.message)
+        window.location.reload()
+        return
+    }
+
+    const { id, name } = response
+
+    sessionStorage.setItem("user", JSON.stringify({ id, name }))
+
+    alert("Login realizado com sucesso.")
 
     window.location.href = "../index.html"
 }
