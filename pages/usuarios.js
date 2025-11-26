@@ -1,7 +1,7 @@
 const main = document.querySelector("main")
 
 async function buscarUsuarios() {
-    const users = await fetch("http://localhost:3333").then((response) => response.json())
+    const users = await fetch("https://backend-fullstack-dusky.vercel.app/").then((response) => response.json())
     
     users.map(user => {
         main.innerHTML += `
